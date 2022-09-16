@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:#ddd;
+        }
+        .timer{
+            text-align: center;
+            margin-left: 35rem;
+            margin-top:15rem;
+            border-radius: 14rem;
+            cursor: pointer;
+            width: 11rem;
+            height: 4rem;
+            line-height: 4rem;
+            border: .1rem solid black;
+            background-color: pink;
+            font-size: 2rem;
+
+        }
+    </style>
+</head>
+<body onload="timer1()">
+<div class="timer"></div>
+<script>
+    function timer1(){
+            var t="99:99:99";
+                var timer=document.querySelector(".timer");
+                timer.innerHTML=t;
+                var tim=setInterval(function(){
+                var time_up=false;
+            var h=0; var m=0; var s=0;
+            time= t.split(":")
+            console.log(time);
+            h=parseInt(time[0]);
+            console.log(h)
+            m=parseInt(time[1]);
+            console.log(m)
+            s=parseInt(time[2]);
+            console.log(s)
+
+            if(s==0){
+                if(m>0){
+                    s=59;
+                    m--;
+                }
+                else if(h>0){
+                    m=59;
+                    s=59;
+                    h--;
+                }
+                else{
+                time_up=true;
+                } 
+            }
+            else{
+                s--;
+            }
+            if(h<10)
+                h="0"+h;
+            if(m<10)
+                m="0"+m;
+            if(s<10)
+                s="0"+s;
+                t=h+":"+m+":"+s;
+                document.querySelector(".timer").innerHTML=t;
+            if(time_up)
+                document.querySelector(".timer").innerHTML="time UP";
+            if(time_up)
+                clearInterval(tim);
+        },1000);
+    
+    }
+</script>
+</body>
+</html>
